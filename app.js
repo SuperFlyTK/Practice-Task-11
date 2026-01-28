@@ -34,6 +34,22 @@ const itemSchema = new mongoose.Schema(
 
 const Item = mongoose.model('Item', itemSchema);
 
+const API_KEY = 'mysecretkey';
+
+const authMiddleware = (req, res, next) => {
+  const apiKey = req.headers['x-api-key'];
+
+  if (!apiKey) {
+    return res.status(401).json({ error: 'API key is missing' });
+  }
+
+  if (apiKey !== API_KEY) {
+    return res.status(403).json({ error: 'Invalid API key' });
+  }
+
+  next();
+};
+
 /* routes */
 
 // GET /

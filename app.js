@@ -55,6 +55,15 @@ app.get('/api/items/:id', async (req, res) => {
   }
 });
 
+// GET /version
+app.get('/version', (req, res) => {
+  res.json({
+    version: '1.1',
+    updatedAt: '2026-01-18'
+  });
+});
+
+
 // POST /api/items
 app.post('/api/items', async (req, res) => {
   const item = await Item.create(req.body);

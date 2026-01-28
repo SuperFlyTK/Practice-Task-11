@@ -21,11 +21,16 @@ const itemSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: true
     },
+    price: {
+      type: Number,
+      required: false
+    }
   },
   { timestamps: true }
 );
+
 
 const Item = mongoose.model('Item', itemSchema);
 
